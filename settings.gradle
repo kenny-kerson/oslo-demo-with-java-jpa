@@ -1,0 +1,6 @@
+rootProject.name = 'oslo-demo-with-java-jpa'
+
+include(
+        ':hub',
+        ':biz'
+)
