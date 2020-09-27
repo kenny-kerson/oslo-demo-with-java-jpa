@@ -29,7 +29,11 @@
 ## Project Structure
 1. **멀티 모듈 프로젝트**
    * `hub` : 사용자 리퀘스트 서빙, circuit breaker, failover & fallback, throttling, ...
-   * `biz` : 도메인 및 서비스 기능 구현 
+   * `biz` : 도메인 및 서비스 기능 구현
+   * `infra` : 외부연동, NoSql, Message Broker 등 인프라 레벨의 실제 구현체 기능을 제공하는 모듈
+      * client-feign
+      * db-redis 
+   * `common` : util, exception, dto 등 고수준 레벨의 모듈들이 공통으로 사용하는 기능구현. 가장 최소화된 구현.
 2. **DDD 관점의 패키징 및 클래스 구성**
    * account, customer, product, ...
    * ui, domain, infra, ...
@@ -45,14 +49,16 @@
    * TBD 
 4. Middleware 종료
    * TBD
-
-## Deploy
-- TBD 
-
+   
 ## APIs
 - Application(WAS)으로 기동되는 **Hub, Biz에서 제공하는 API List**
 ### Hub
-- TBD
+- 전체계좌조회 : `POST /v1/oslo/hub/customer/all_account_list`
 
 ### Biz
-- TBD
+- 계좌기본 목록조회 : `POST /v1/oslo/biz/customer/base_account_list` 
+- 수신계좌 정보조회 : `GET /v1/oslo/biz/account/dep/info`
+- 여신계좌 정보조회 : `GET /v1/oslo/biz/account/loan/info`
+
+## Deploy
+- TBD 

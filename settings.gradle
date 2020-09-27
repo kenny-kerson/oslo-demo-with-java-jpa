@@ -3,5 +3,7 @@ rootProject.name = 'oslo-demo-with-java-jpa'
 include(
         ':hub',
         ':biz',
-        ':common'
+        ':common',
+        ':infra:client-feign',
+        ':infra:db-redis'
 )
