@@ -1,5 +1,9 @@
 # Oslo Demo with Java & JPA
 - 전체계좌조회 자체구현 오슬로 프로젝트의 데모버전 with Java, JPA
+- **목적**
+  * 기존 Oslo 프로젝트의 로직을, Original Oslo Spec과 다르게, JPA / Kafka / ... 등 새로운 기술셋으로 구현해보는것
+  * 그 외, 새롭게 습득했거나, 반복숙달이 필요한 기술셋들에 대한 실험적 적용
+  * 개발역량강화를 위한 테스트 프로젝트 
    
 ## Index
 - [Specification](#specification)
