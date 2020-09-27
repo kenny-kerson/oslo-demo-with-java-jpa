@@ -34,19 +34,24 @@
       * client-feign
       * db-redis 
    * `common` : util, exception, dto 등 고수준 레벨의 모듈들이 공통으로 사용하는 기능구현. 가장 최소화된 구현.
+   
 2. **DDD 관점의 패키징 및 클래스 구성**
    * account, customer, product, ...
    * ui, domain, infra, ...
+   
 3. **docker-compose를 통한 로컬 개발환경 구성**
    * RDB( PostgreSQL ), Redis, Kafka, ... 
 
 ## Local Develop Environment
 1. Middleware 시작
    * TBD
+   
 2. Application 시작
    * TBD
+   
 3. Application 종료
-   * TBD 
+   * TBD
+    
 4. Middleware 종료
    * TBD
    
