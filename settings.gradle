@@ -7,5 +7,6 @@ include(
         ':common',
         ':infra:client-feign',
         ':infra:db-redis',
-        ':infra:broker-kafka'
+        ':infra:broker-kafka',
+        ':infra:db-mongo'
 )
