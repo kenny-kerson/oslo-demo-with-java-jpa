@@ -11,8 +11,6 @@ spring:
   profiles: local
 
 client:
-  feign:
-    to_biz:
-      url: localhost
-      port: 8082
-
+  biz:
+    name: "bizFeignClient"
+    url: "http://localhost:8082"

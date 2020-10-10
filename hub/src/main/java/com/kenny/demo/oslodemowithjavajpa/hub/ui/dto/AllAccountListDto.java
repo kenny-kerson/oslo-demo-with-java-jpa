@@ -1,10 +1,10 @@
-package com.kenny.demo.oslodemowithjavajpa.clientfeign.dto.customer;
+package com.kenny.demo.oslodemowithjavajpa.hub.ui.dto;
 
 import lombok.*;
 
 import java.util.List;
 
-public class BaseAccountList {
+public class AllAccountListDto {
 
     @Getter
     @Builder
@@ -28,9 +28,9 @@ public class BaseAccountList {
     @ToString
     @NoArgsConstructor @AllArgsConstructor
     public static class Grid01 {
-
         private String acno;
         private String firstDivisionCode;
+        private String acnoStcd;
+        private String acnoName;
     }
-
 }

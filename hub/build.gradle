@@ -8,6 +8,7 @@ configurations {
 dependencies {
     // include module
     implementation project(':common')
+    implementation project(':infra:client-feign')
     implementation project(':infra:broker-kafka')
 
     // Web

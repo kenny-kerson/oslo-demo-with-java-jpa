@@ -4,6 +4,9 @@
 spring:
   application:
     name: oslo-demo-hub
+  profiles:
+    include:
+      - client-feign
 
 server:
   port: 8081
