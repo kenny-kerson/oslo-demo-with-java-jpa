@@ -7,9 +7,13 @@ jar {
 }
 
 dependencies {
+    // Spring
     implementation 'org.springframework.boot:spring-boot-starter'
-}
 
-test {
-    useJUnitPlatform()
+    // Spring Cloud
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign"
+
+    // External Library
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 }
