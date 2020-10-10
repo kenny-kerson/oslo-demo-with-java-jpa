@@ -3,10 +3,10 @@
 # =======================================================
 spring:
   application:
-    name: oslo-demo-hub
+    name: oslo-demo-consumer
 
 server:
-  port: 8081
+  port: 8083
 
 ---
 # =======================================================

@@ -8,6 +8,7 @@ configurations {
 dependencies {
 	// include module
 	implementation project(':common')
+	implementation project(':infra:db-mongo')
 
 	// Web
 	implementation 'org.springframework.boot:spring-boot-starter-web'
