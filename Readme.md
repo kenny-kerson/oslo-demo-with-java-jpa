@@ -1,5 +1,6 @@
 # Oslo Demo with Java & JPA
-- 전체계좌조회 자체구현 오슬로 프로젝트의 데모버전 with Java, JPA
+- **개요**
+  * 전체계좌조회 자체구현 오슬로 프로젝트의 데모버전 with Java, JPA
 - **목적**
   * 기존 Oslo 프로젝트의 로직을, Original Oslo Spec과 다르게, JPA / Kafka / ... 등 새로운 기술셋으로 구현해보는것
   * 그 외, 새롭게 습득했거나, 반복숙달이 필요한 기술셋들에 대한 실험적 적용
@@ -18,9 +19,11 @@
 - Framework : **Spring Boot 2.3.3**
 - DBMS
   * RDB : **PostgreSQL**( Local / Product 환경동일 )
+  * NoSQL : **MongoDB**( API로그 적재용 )
   * ORM : **JPA**
 - Middleware
-  * TBD : Redis, Kafka, ...
+  * Cache, In-memory DB : **Redis** 5
+  * Message Broker : **Kafka** 2.12-2.3  & **Zookeeper** 3.4.6 
 - External Library
   * Lombok
     * getter, constructor, builder 등 반복적인 코드제거를 위해 사용
@@ -30,9 +33,12 @@
 1. **멀티 모듈 프로젝트**
    * `hub` : 사용자 리퀘스트 서빙, circuit breaker, failover & fallback, throttling, ...
    * `biz` : 도메인 및 서비스 기능 구현
+   * `consumer` : Message Broker의 Consumer와 같이 준실시간 처리로직 구현 
    * `infra` : 외부연동, NoSql, Message Broker 등 인프라 레벨의 실제 구현체 기능을 제공하는 모듈
-      * client-feign
-      * db-redis 
+      * `client-feign` : openfeign 구현모듈. hub -> biz 연동을 위해 사용 
+      * `db-redis` : redis 구현모듈 for cache, memoryDB
+      * `db-mongo` : mongoDB 구현모듈 for API request/response Logging
+      * `broker-kafka` : kafka 구현모듈 for API 로깅 및 이벤트 or 준실시간 로직처리 
    * `common` : util, exception, dto 등 고수준 레벨의 모듈들이 공통으로 사용하는 기능구현. 가장 최소화된 구현.
    
 2. **DDD 관점의 패키징 및 클래스 구성**
