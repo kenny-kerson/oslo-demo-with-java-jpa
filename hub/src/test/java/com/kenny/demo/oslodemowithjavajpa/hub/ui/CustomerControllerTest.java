@@ -29,12 +29,16 @@ class CustomerControllerTest extends IntegrationTest {
     @Order(1)
     void getAllAccountList() throws Exception {
         // Given
+        final String guid = "20201010120000OSLO-DEMO-HUB000111001";
+        final String cstno = "0000011000000331";
+        final String acno = "3333010000001";
+
         final CommonRequest<AllAccountListDto.In> input = CommonRequest.<AllAccountListDto.In>builder()
-                .guid("20201010120000OSLO-DEMO-HUB000111001")
-                .cstno("0000011000000331")
+                .guid(guid)
+                .cstno(cstno)
                 .dataBody(
                         AllAccountListDto.In.builder()
-                                .representationAcno("3333010000001")
+                                .representationAcno(acno)
                                 .build()
                 )
                 .build();
@@ -46,9 +50,9 @@ class CustomerControllerTest extends IntegrationTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.cstno").value("0000011000000331"))
-                .andExpect(jsonPath("$.guid").value("20201010120000OSLO-DEMO-HUB000111001"))
-                .andExpect(jsonPath("$.dataBody.grid01[0].acno").value("3333010000001"))
+                .andExpect(jsonPath("$.cstno").value(cstno))
+                .andExpect(jsonPath("$.guid").value(guid))
+                .andExpect(jsonPath("$.dataBody.grid01[0].acno").value(acno))
         ;
     }
 }
