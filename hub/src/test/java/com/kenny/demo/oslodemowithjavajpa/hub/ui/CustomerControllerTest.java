@@ -1,15 +1,12 @@
 package com.kenny.demo.oslodemowithjavajpa.hub.ui;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kenny.demo.oslodemowithjavajpa.clientfeign.dto.CommonRequest;
 import com.kenny.demo.oslodemowithjavajpa.hub.common.IntegrationTest;
 import com.kenny.demo.oslodemowithjavajpa.hub.ui.dto.AllAccountListDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -17,12 +14,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class CustomerControllerTest extends IntegrationTest {
-
-    @Autowired
-    MockMvc mockMvc;
-
-    @Autowired
-    ObjectMapper objectMapper;
 
     @Test
     @DisplayName("# 전계좌조회 : 정상")
