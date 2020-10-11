@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class CustomerControllerTest extends IntegrationTest {
@@ -40,11 +41,14 @@ class CustomerControllerTest extends IntegrationTest {
 
         // When & Then
         mockMvc.perform(post("/v1/hub/customer/all_account_list")
-                .content(objectMapper.writeValueAsString(input))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
-        )
+                        .content(objectMapper.writeValueAsString(input))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.cstno").value("0000011000000331"))
+                .andExpect(jsonPath("$.guid").value("20201010120000OSLO-DEMO-HUB000111001"))
+                .andExpect(jsonPath("$.dataBody.grid01[0].acno").value("3333010000001"))
+        ;
     }
 }

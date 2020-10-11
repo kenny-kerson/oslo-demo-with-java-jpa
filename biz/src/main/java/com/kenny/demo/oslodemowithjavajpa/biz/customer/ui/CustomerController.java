@@ -4,6 +4,7 @@ import com.kenny.demo.oslodemowithjavajpa.clientfeign.dto.CommonRequest;
 import com.kenny.demo.oslodemowithjavajpa.clientfeign.dto.CommonResponse;
 import com.kenny.demo.oslodemowithjavajpa.clientfeign.dto.customer.BaseAccountList;
 import com.kenny.demo.oslodemowithjavajpa.common.code.StatusCode;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class CustomerController implements CustomerControllerSpec {
      * 고객별 기본계좌 목록조회
      */
     @Override
-    public CommonResponse<BaseAccountList.Out> getBaseAccountListByCstno(CommonRequest<BaseAccountList.In> in) {
+    public CommonResponse<BaseAccountList.Out> getBaseAccountListByCstno(@RequestBody CommonRequest<BaseAccountList.In> in) {
 
         // TODO 임시코드
         return CommonResponse.<BaseAccountList.Out>builder()
