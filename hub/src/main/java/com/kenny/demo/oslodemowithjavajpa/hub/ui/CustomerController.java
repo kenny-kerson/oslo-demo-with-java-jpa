@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 @RestController
@@ -39,6 +41,9 @@ public class CustomerController implements CustomerControllerSpec {
 
         /* 계좌별 기본정보 조회 */
         // TODO CompletableFuture : 병렬처리 & Async처리
+        List<CompletableFuture> cfList =
+
+        CompletableFuture.allOf()
 
         // TODO 출력값 조립로직 변경필요!!
         return CommonResponse.<AllAccountListDto.Out>builder()
