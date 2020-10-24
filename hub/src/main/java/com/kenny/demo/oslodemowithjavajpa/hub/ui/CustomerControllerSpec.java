@@ -6,6 +6,9 @@ import com.kenny.demo.oslodemowithjavajpa.hub.ui.dto.AllAccountListDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
+
 public interface CustomerControllerSpec {
 
     @PostMapping(
@@ -13,5 +16,5 @@ public interface CustomerControllerSpec {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    CommonResponse<AllAccountListDto.Out> getAllAccountList(CommonRequest<AllAccountListDto.In> input );
+    CommonResponse<AllAccountListDto.Out> getAllAccountList(CommonRequest<AllAccountListDto.In> input ) throws InterruptedException, ExecutionException, TimeoutException;
 }

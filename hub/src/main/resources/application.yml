@@ -18,4 +18,6 @@ server:
 spring:
   profiles: local
 
-logging.level.root: INFO
+logging.level:
+  root: INFO
+  com.kenny.demo.oslodemowithjavajpa.hub: DEBUG

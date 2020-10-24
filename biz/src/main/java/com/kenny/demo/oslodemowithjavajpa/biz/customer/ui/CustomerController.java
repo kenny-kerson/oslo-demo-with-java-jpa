@@ -39,6 +39,14 @@ public class CustomerController implements CustomerControllerSpec {
                                                 BaseAccountList.Grid01.builder()
                                                         .acno("3333010000003")
                                                         .firstDivisionCode("01")
+                                                        .build(),
+                                                BaseAccountList.Grid01.builder()
+                                                        .acno("3650010000001")
+                                                        .firstDivisionCode("02")
+                                                        .build(),
+                                                BaseAccountList.Grid01.builder()
+                                                        .acno("3650010000002")
+                                                        .firstDivisionCode("02")
                                                         .build()
                                         )
                                 )
