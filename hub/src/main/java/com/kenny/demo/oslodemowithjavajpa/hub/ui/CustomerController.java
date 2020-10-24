@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -46,17 +43,30 @@ public class CustomerController implements CustomerControllerSpec {
                         .build()
         );
 
+        log.debug( "__KENNY__ Current Thread Info : {}", Thread.currentThread().getName());
+
         /* 계좌별 기본정보 조회 */
-        // TODO CompletableFuture : 쓰레드풀
+        // Async 쓰레드풀 별도로 생성
+        final Executor supplyAsyncExecutor = Executors.newFixedThreadPool(10);
+        final Executor thenApplyAsyncExecutor = Executors.newFixedThreadPool(10);
+
         // TODO CompletableFuture : 예외처리
         final List<CompletableFuture<CommonResponse<AccountInfo.Out>>> completableFutureList = baseAccountListByCstno.getDataBody().getGrid01()
                 .stream()
                 .map(el -> {
                     if ("01".equals(el.getFirstDivisionCode())) {
-                        return CompletableFuture.supplyAsync(() -> bizFeignClient.getDepAccountInfo(el.getAcno()));
+                        return CompletableFuture.supplyAsync(() -> {
+                                log.debug( "__KENNY__ supplyAsync 01 : {}", Thread.currentThread().getName());
+
+                                return bizFeignClient.getDepAccountInfo(el.getAcno());
+                        }, supplyAsyncExecutor);
 
                     } else if ("02".equals(el.getFirstDivisionCode())) {
-                        return CompletableFuture.supplyAsync(() -> bizFeignClient.getLoanAccountInfo(el.getAcno()));
+                        return CompletableFuture.supplyAsync(() -> {
+                            log.debug( "__KENNY__ supplyAsync 02 : {}", Thread.currentThread().getName());
+
+                            return bizFeignClient.getLoanAccountInfo(el.getAcno());
+                        });
                     }
 
                     return null;
@@ -67,8 +77,8 @@ public class CustomerController implements CustomerControllerSpec {
                 .allOf(completableFutureList.toArray(new CompletableFuture[completableFutureList.size()]));
 
         final List<AllAccountListDto.Grid01> allAccountListDtoGrid01 = allOfCf
-                .thenApply(el -> {
-                        log.debug("__KENNY__ allOfCf thenApply : {}", el);
+                .thenApplyAsync(el -> {
+                        log.debug("__KENNY__ allOfCf thenApply : {}, Theard : {}", el, Thread.currentThread().getName());
 
                         final List<CommonResponse<AccountInfo.Out>> responseList = completableFutureList.stream()
                                 .map(CompletableFuture::join)
@@ -76,7 +86,7 @@ public class CustomerController implements CustomerControllerSpec {
 
                         log.debug("__KENNY__ allOfCf thenApply return : {}", responseList);
 
-                        return responseList; })
+                        return responseList; }, thenApplyAsyncExecutor)
                 .get(10L, TimeUnit.SECONDS)
                 .stream()
                 .map(el -> AllAccountListDto.Grid01.builder()
