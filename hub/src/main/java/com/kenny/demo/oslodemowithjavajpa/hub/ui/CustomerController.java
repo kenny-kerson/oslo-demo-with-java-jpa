@@ -63,20 +63,20 @@ public class CustomerController implements CustomerControllerSpec {
                 })
                 .collect(Collectors.toList());
 
-        final CompletableFuture<Void> allOfCf
-                = CompletableFuture.allOf(completableFutureList.toArray(new CompletableFuture[completableFutureList.size()]));
+        final CompletableFuture<Void> allOfCf = CompletableFuture
+                .allOf(completableFutureList.toArray(new CompletableFuture[completableFutureList.size()]));
 
-        final List<AllAccountListDto.Grid01> allAccountListDtoGrid01 = allOfCf.thenApply(el -> {
-                log.debug("__KENNY__ allOfCf thenApply : {}", el);
+        final List<AllAccountListDto.Grid01> allAccountListDtoGrid01 = allOfCf
+                .thenApply(el -> {
+                        log.debug("__KENNY__ allOfCf thenApply : {}", el);
 
-                final List<CommonResponse<AccountInfo.Out>> responseList = completableFutureList.stream()
-                        .map(CompletableFuture::join)
-                        .collect(Collectors.toList());
+                        final List<CommonResponse<AccountInfo.Out>> responseList = completableFutureList.stream()
+                                .map(CompletableFuture::join)
+                                .collect(Collectors.toList());
 
-                log.debug("__KENNY__ allOfCf thenApply return : {}", responseList);
+                        log.debug("__KENNY__ allOfCf thenApply return : {}", responseList);
 
-                return responseList;
-        })
+                        return responseList; })
                 .get(10L, TimeUnit.SECONDS)
                 .stream()
                 .map(el -> AllAccountListDto.Grid01.builder()
