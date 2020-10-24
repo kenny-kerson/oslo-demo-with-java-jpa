@@ -78,7 +78,7 @@ public class CustomerController implements CustomerControllerSpec {
 
             return responseList;
         })
-                .get(1000L, TimeUnit.MICROSECONDS)
+                .get(10L, TimeUnit.SECONDS)
                 .stream()
                 .map(el -> AllAccountListDto.Grid01.builder()
                         .acno(el.getDataBody().getAcno())
