@@ -47,7 +47,8 @@ public class CustomerController implements CustomerControllerSpec {
         );
 
         /* 계좌별 기본정보 조회 */
-        // TODO CompletableFuture : 병렬처리 & Async처리
+        // TODO CompletableFuture : 쓰레드풀
+        // TODO CompletableFuture : 예외처리
         final List<CompletableFuture<CommonResponse<AccountInfo.Out>>> completableFutureList = baseAccountListByCstno.getDataBody().getGrid01()
                 .stream()
                 .map(el -> {
@@ -62,21 +63,19 @@ public class CustomerController implements CustomerControllerSpec {
                 })
                 .collect(Collectors.toList());
 
-        List<AllAccountListDto.Grid01> grid01 = new ArrayList<>();
-
         final CompletableFuture<Void> allOfCf
                 = CompletableFuture.allOf(completableFutureList.toArray(new CompletableFuture[completableFutureList.size()]));
 
         final List<AllAccountListDto.Grid01> allAccountListDtoGrid01 = allOfCf.thenApply(el -> {
-            log.debug("__KENNY__ allOfCf thenApply : {}", el);
+                log.debug("__KENNY__ allOfCf thenApply : {}", el);
 
-            final List<CommonResponse<AccountInfo.Out>> responseList = completableFutureList.stream()
-                    .map(CompletableFuture::join)
-                    .collect(Collectors.toList());
+                final List<CommonResponse<AccountInfo.Out>> responseList = completableFutureList.stream()
+                        .map(CompletableFuture::join)
+                        .collect(Collectors.toList());
 
-            log.debug("__KENNY__ allOfCf thenApply return : {}", responseList);
+                log.debug("__KENNY__ allOfCf thenApply return : {}", responseList);
 
-            return responseList;
+                return responseList;
         })
                 .get(10L, TimeUnit.SECONDS)
                 .stream()
