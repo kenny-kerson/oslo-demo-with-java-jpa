@@ -15,9 +15,9 @@ public class AsyncConfig {
     @Bean(name = "supplyAsyncExecutor")
     public Executor supplyAsyncExecutor() {
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
-        threadPoolTaskExecutor.setCorePoolSize(5);
-        threadPoolTaskExecutor.setMaxPoolSize(10);
-        threadPoolTaskExecutor.setQueueCapacity(100);
+        threadPoolTaskExecutor.setCorePoolSize(1);
+        threadPoolTaskExecutor.setMaxPoolSize(Integer.MAX_VALUE);
+        threadPoolTaskExecutor.setQueueCapacity(Integer.MAX_VALUE);
         threadPoolTaskExecutor.setKeepAliveSeconds(60);
         threadPoolTaskExecutor.setThreadNamePrefix("supplyAsyncExecutor-");
         threadPoolTaskExecutor.initialize();
@@ -28,8 +28,8 @@ public class AsyncConfig {
     public Executor thenAsyncExecutor() {
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
         threadPoolTaskExecutor.setCorePoolSize(1);
-        threadPoolTaskExecutor.setMaxPoolSize(10);
-        threadPoolTaskExecutor.setQueueCapacity(100);
+        threadPoolTaskExecutor.setMaxPoolSize(Integer.MAX_VALUE);
+        threadPoolTaskExecutor.setQueueCapacity(Integer.MAX_VALUE);
         threadPoolTaskExecutor.setKeepAliveSeconds(60);
         threadPoolTaskExecutor.setThreadNamePrefix("thenAsyncExecutor-");
         threadPoolTaskExecutor.initialize();

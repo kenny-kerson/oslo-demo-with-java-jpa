@@ -105,20 +105,20 @@ public class CustomerController implements CustomerControllerSpec {
                 .collect(Collectors.toList());
 
 
-//        final CompletableFuture<CommonResponse<DepAccountInfo.Out>> cf =
+//        final CompletableFuture<CommonResponse<AccountInfo.Out>> cf =
 //                CompletableFuture.supplyAsync(() -> bizFeignClient.getDepAccountInfo("3333010000001"));
 //
 //        cf.thenApply(el -> {
-//            log.debug( "__KENNY__ thenApply el : {}", el);
+//            log.debug( "__KENNY__ thenApply el : {}, Thread : {}", el, Thread.currentThread().getName());
 //            return el;
 //        });
 //
 //        cf.thenAccept(el -> {
-//            log.debug( "__KENNY__ thenAccept el : {}", el);
+//            log.debug( "__KENNY__ thenAccept el : {}, Thread : {}", el, Thread.currentThread().getName());
 //        });
 //
 //        try {
-//            CommonResponse<DepAccountInfo.Out> outCommonResponse = cf.join();
+//            CommonResponse<AccountInfo.Out> outCommonResponse = cf.join();
 //            log.debug( "__KENNY__ outCommonResponse : {}", outCommonResponse);
 //        } catch (Exception e) {
 //            e.printStackTrace();
