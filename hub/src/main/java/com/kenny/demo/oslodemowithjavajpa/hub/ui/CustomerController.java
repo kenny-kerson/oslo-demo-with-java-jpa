@@ -10,6 +10,7 @@ import com.kenny.demo.oslodemowithjavajpa.common.code.StatusCode;
 import com.kenny.demo.oslodemowithjavajpa.hub.ui.dto.AllAccountListDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +26,12 @@ import java.util.stream.Collectors;
 public class CustomerController implements CustomerControllerSpec {
 
     private final BizFeignClient bizFeignClient;
+
+    @Qualifier("supplyAsyncExecutor")
+    private final Executor supplyAsyncExecutor;
+
+    @Qualifier("thenAsyncExecutor")
+    private final Executor thenAsyncExecutor;
 
     @Override
     public CommonResponse<AllAccountListDto.Out> getAllAccountList(@RequestBody CommonRequest<AllAccountListDto.In> input) throws InterruptedException, ExecutionException, TimeoutException {
@@ -47,8 +54,8 @@ public class CustomerController implements CustomerControllerSpec {
 
         /* 계좌별 기본정보 조회 */
         // Async 쓰레드풀 별도로 생성
-        final Executor supplyAsyncExecutor = Executors.newFixedThreadPool(10);
-        final Executor thenApplyAsyncExecutor = Executors.newFixedThreadPool(10);
+//        final Executor supplyAsyncExecutor = Executors.newFixedThreadPool(10);
+//        final Executor thenApplyAsyncExecutor = Executors.newFixedThreadPool(10);
 
         // TODO CompletableFuture : 예외처리
         final List<CompletableFuture<CommonResponse<AccountInfo.Out>>> completableFutureList = baseAccountListByCstno.getDataBody().getGrid01()
@@ -66,7 +73,7 @@ public class CustomerController implements CustomerControllerSpec {
                             log.debug( "__KENNY__ supplyAsync 02 : {}", Thread.currentThread().getName());
 
                             return bizFeignClient.getLoanAccountInfo(el.getAcno());
-                        });
+                        }, supplyAsyncExecutor);
                     }
 
                     return null;
@@ -86,7 +93,7 @@ public class CustomerController implements CustomerControllerSpec {
 
                         log.debug("__KENNY__ allOfCf thenApply return : {}", responseList);
 
-                        return responseList; }, thenApplyAsyncExecutor)
+                        return responseList; }, thenAsyncExecutor)
                 .get(10L, TimeUnit.SECONDS)
                 .stream()
                 .map(el -> AllAccountListDto.Grid01.builder()
