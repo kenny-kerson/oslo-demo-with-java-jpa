@@ -8,5 +8,6 @@ include(
         ':infra:client-feign',
         ':infra:db-redis',
         ':infra:broker-kafka',
-        ':infra:db-mongo'
+        ':infra:db-mongo',
+        ':infra:db-postgresql'
 )

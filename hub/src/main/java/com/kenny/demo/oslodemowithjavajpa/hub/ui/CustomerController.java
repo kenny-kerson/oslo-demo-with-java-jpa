@@ -80,10 +80,8 @@ public class CustomerController implements CustomerControllerSpec {
                 })
                 .collect(Collectors.toList());
 
-        final CompletableFuture<Void> allOfCf = CompletableFuture
-                .allOf(completableFutureList.toArray(new CompletableFuture[completableFutureList.size()]));
-
-        final List<AllAccountListDto.Grid01> allAccountListDtoGrid01 = allOfCf
+        final List<AllAccountListDto.Grid01> allAccountListDtoGrid01 = CompletableFuture
+                .allOf(completableFutureList.toArray(new CompletableFuture[completableFutureList.size()]))
                 .thenApplyAsync(el -> {
                         log.debug("__KENNY__ allOfCf thenApply : {}, Theard : {}", el, Thread.currentThread().getName());
 
@@ -93,7 +91,8 @@ public class CustomerController implements CustomerControllerSpec {
 
                         log.debug("__KENNY__ allOfCf thenApply return : {}", responseList);
 
-                        return responseList; }, thenAsyncExecutor)
+                        return responseList;
+                }, thenAsyncExecutor)
                 .get(10L, TimeUnit.SECONDS)
                 .stream()
                 .map(el -> AllAccountListDto.Grid01.builder()
