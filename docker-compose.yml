@@ -13,7 +13,20 @@ services:
       POSTGRES_PASSWORD: 1qaz@WSX
       POSTGRES_DB: oslo_demo_postgresql
     volumes:
-      - "./init/:/docker-entrypoint-initdb.d/"
+      - "./init/postgresql:/docker-entrypoint-initdb.d/"
+
+  # ================================================
+  # - RDB : Oracle
+  # ================================================
+  oracle:
+    container_name: oslo_demo_oracle
+    image: oracleinanutshell/oracle-xe-11g
+    ports:
+      - 1521:1521
+      - 8080:8080
+      - 5500:5500
+    volumes:
+      - "./init/oracle:/docker-entrypoint-initdb.d/"
 
   # ================================================
   # - NoSql : MongoDB
