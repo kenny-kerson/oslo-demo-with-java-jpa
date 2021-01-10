@@ -7,10 +7,13 @@ jar {
 }
 
 dependencies {
-//    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    implementation('org.springframework.data:spring-data-oracle:1.2.1.RELEASE')
+    implementation 'org.springframework.boot:spring-boot-starter'
 
-    runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+    implementation('org.springframework.data:spring-data-oracle:1.2.1.RELEASE')
+    implementation 'com.oracle.database.jdbc:ojdbc8:19.6.0.0'
+    implementation 'com.oracle.database.jdbc:ucp:19.6.0.0'
+
+//    runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

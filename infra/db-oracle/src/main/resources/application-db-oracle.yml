@@ -1,1 +1,15 @@
+# ===================================================================
+# 글로벌 셋팅
+# ===================================================================
+spring:
+  datasource:
+    url:
+    username: develop
+    password: 1qaz@WSX
+    driver-class-name: oracle.jdbc.driver.OracleDriver
 
+oracle:
+  ucp:
+    init-pool-size: 1000
+    min-pool-size: 1000
+    max-pool-size: 10000
