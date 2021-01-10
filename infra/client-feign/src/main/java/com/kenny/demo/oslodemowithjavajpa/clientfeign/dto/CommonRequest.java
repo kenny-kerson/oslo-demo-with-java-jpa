@@ -5,7 +5,8 @@ import lombok.*;
 @Getter
 @Builder
 @ToString
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class CommonRequest<T> {
 
     private String guid;

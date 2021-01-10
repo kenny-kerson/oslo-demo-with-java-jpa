@@ -6,8 +6,10 @@ include(
         ':consumer',
         ':common',
         ':infra:client-feign',
+        ':infra:client-webflux',
         ':infra:db-redis',
         ':infra:broker-kafka',
         ':infra:db-mongo',
+        ':infra:db-oracle',
         ':infra:db-postgresql'
 )

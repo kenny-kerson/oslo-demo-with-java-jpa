@@ -16,7 +16,8 @@ public class LoanAccountInfo {
     @Getter
     @Builder
     @ToString
-    @NoArgsConstructor @AllArgsConstructor
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Out {
         private String loanAcno;
         private String firstDivisionCode;

@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BrokerKafkaApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BrokerKafkaApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BrokerKafkaApplication.class, args);
+    }
 
 }

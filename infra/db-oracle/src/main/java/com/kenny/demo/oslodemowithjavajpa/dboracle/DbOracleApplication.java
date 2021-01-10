@@ -1,13 +1,13 @@
-package com.kenny.demo.oslodemowithjavajpa.dbmongo;
+package com.kenny.demo.oslodemowithjavajpa.dboracle;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DbMongoApplication {
+public class DbOracleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DbMongoApplication.class, args);
+        SpringApplication.run(DbOracleApplication.class, args);
     }
 
 }

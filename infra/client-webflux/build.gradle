@@ -7,6 +7,10 @@ jar {
 }
 
 dependencies {
+    // Spring
     implementation 'org.springframework.boot:spring-boot-starter'
-}
 
+    // External Library
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+}
