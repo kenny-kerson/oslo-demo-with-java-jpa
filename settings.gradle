@@ -12,5 +12,6 @@ include(
         ':infra:db-redis',
         ':infra:broker-kafka',
         ':infra:db-mongo',
+        ':infra:db-oracle',
         ':infra:db-postgresql'
 )

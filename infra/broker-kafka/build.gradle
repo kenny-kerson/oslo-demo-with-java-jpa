@@ -1,12 +1,12 @@
 bootJar {
-	enabled = false
+    enabled = false
 }
 
 jar {
-	enabled = true
+    enabled = true
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter'
 }
 

@@ -7,7 +7,8 @@ public class AccountInfo {
     @Getter
     @Builder
     @ToString
-    @NoArgsConstructor @AllArgsConstructor
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class In {
         private String acno;
     }
@@ -15,7 +16,8 @@ public class AccountInfo {
     @Getter
     @Builder
     @ToString
-    @NoArgsConstructor @AllArgsConstructor
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Out {
         private String acno;
         private String firstDivisionCode;

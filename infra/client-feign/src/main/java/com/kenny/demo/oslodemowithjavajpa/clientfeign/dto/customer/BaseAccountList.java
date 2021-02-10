@@ -9,7 +9,8 @@ public class BaseAccountList {
     @Getter
     @Builder
     @ToString
-    @NoArgsConstructor @AllArgsConstructor
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class In {
         private String representationAcno;
     }
@@ -17,7 +18,8 @@ public class BaseAccountList {
     @Getter
     @Builder
     @ToString
-    @NoArgsConstructor @AllArgsConstructor
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Out {
         private String representationAcno;
         private List<Grid01> grid01;
@@ -26,7 +28,8 @@ public class BaseAccountList {
     @Getter
     @Builder
     @ToString
-    @NoArgsConstructor @AllArgsConstructor
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Grid01 {
 
         private String acno;
