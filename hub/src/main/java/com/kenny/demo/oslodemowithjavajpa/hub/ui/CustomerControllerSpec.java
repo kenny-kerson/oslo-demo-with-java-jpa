@@ -12,9 +12,16 @@ import java.util.concurrent.TimeoutException;
 public interface CustomerControllerSpec {
 
     @PostMapping(
-            value = "/v1/hub/customer/all_account_list",
+            value = "/v1/hub/customer/all_account_list/cf",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    CommonResponse<AllAccountListDto.Out> getAllAccountList(CommonRequest<AllAccountListDto.In> input ) throws InterruptedException, ExecutionException, TimeoutException;
+    CommonResponse<AllAccountListDto.Out> getAllAccountListByCf(CommonRequest<AllAccountListDto.In> input ) throws InterruptedException, ExecutionException, TimeoutException;
+
+    @PostMapping(
+            value = "/v1/hub/customer/all_account_list/webflux",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    CommonResponse<AllAccountListDto.Out> getAllAccountListByWebFlux(CommonRequest<AllAccountListDto.In> input ) throws InterruptedException, ExecutionException, TimeoutException;
 }

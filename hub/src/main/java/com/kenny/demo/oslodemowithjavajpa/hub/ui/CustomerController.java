@@ -33,8 +33,11 @@ public class CustomerController implements CustomerControllerSpec {
     @Qualifier("thenAsyncExecutor")
     private final Executor thenAsyncExecutor;
 
+    /**
+     * 전계좌조회 CompletableFuture 병렬처리 버전
+     */
     @Override
-    public CommonResponse<AllAccountListDto.Out> getAllAccountList(@RequestBody CommonRequest<AllAccountListDto.In> input) throws InterruptedException, ExecutionException, TimeoutException {
+    public CommonResponse<AllAccountListDto.Out> getAllAccountListByCf(@RequestBody CommonRequest<AllAccountListDto.In> input) throws InterruptedException, ExecutionException, TimeoutException {
         log.debug("__KENNY__ getAllAccountList input : {}", input);
 
         /* 계좌 기본목록 조회 */
@@ -134,5 +137,13 @@ public class CustomerController implements CustomerControllerSpec {
                                 .build()
                 )
                 .build();
+    }
+
+    /**
+     * 전계좌조회 WebFlux 병렬처리 버전
+     */
+    @Override
+    public CommonResponse<AllAccountListDto.Out> getAllAccountListByWebFlux(CommonRequest<AllAccountListDto.In> input) throws InterruptedException, ExecutionException, TimeoutException {
+        return null;
     }
 }
