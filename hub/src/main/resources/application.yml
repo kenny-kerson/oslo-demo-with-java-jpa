@@ -19,5 +19,5 @@ spring:
   profiles: local
 
 logging.level:
-  root: INFO
-  com.kenny.demo.oslodemowithjavajpa.hub: DEBUG
+  root: ERROR
+  com.kenny.demo.oslodemowithjavajpa.hub: ERROR

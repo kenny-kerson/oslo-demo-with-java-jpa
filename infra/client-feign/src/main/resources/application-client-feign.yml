@@ -26,4 +26,4 @@ feign:
 
 logging:
   level:
-    com.kenny.demo.oslodemowithjavajpa.clientfeign.feign: DEBUG
+    com.kenny.demo.oslodemowithjavajpa.clientfeign.feign: ERROR

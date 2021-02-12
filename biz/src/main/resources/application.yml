@@ -33,4 +33,5 @@ spring:
       connection-timeout: 30000
       connection-test-query: SELECT 1
 
-logging.level.root: INFO
+logging.level:
+  root: ERROR

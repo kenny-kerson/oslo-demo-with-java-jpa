@@ -14,3 +14,6 @@ server:
 # =======================================================
 spring:
   profiles: local
+
+logging.level:
+  root: ERROR
