@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import static com.kenny.demo.oslodemowithjavajpa.common.constant.CommonConstant.*;
 
 @SpringBootApplication(scanBasePackages = {
+        OSLO_DEMO_ROOT_PACKAGE,
         OSLO_DEMO_INFRA_CLIENT_FEIGN_PACKAGE,
         OSLO_DEMO_INFRA_CLIENT_WEBFLUX_PACKAGE
 })
