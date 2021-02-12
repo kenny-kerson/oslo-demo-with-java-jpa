@@ -23,5 +23,5 @@ public interface CustomerControllerSpec {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    CommonResponse<AllAccountListDto.Out> getAllAccountListByWebFlux(CommonRequest<AllAccountListDto.In> input ) throws InterruptedException, ExecutionException, TimeoutException;
+    CommonResponse<AllAccountListDto.Out> getAllAccountListByWebFlux(CommonRequest<AllAccountListDto.In> input ) throws Exception;
 }

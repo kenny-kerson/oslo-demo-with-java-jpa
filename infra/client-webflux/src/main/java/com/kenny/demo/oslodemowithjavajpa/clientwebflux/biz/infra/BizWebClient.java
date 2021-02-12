@@ -12,20 +12,13 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.lang.reflect.Type;
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
 public class BizWebClient implements BizWebClientSpec, InitializingBean {
-
-    private final static Long TIMEOUT_DURATION = 3L;
 
     private final WebClient.Builder webClientBuilder;
     private WebClient webClient;
@@ -42,7 +35,7 @@ public class BizWebClient implements BizWebClientSpec, InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         // WebClient
-        this.webClient = WebClient.builder()
+        this.webClient = webClientBuilder
                 .baseUrl(bizBaseUrl)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, bizContentType)
                 .build();
