@@ -13,4 +13,3 @@ spring:
 target:
   biz:
     url: "http://localhost:8082"
-    contentType: "application/json"

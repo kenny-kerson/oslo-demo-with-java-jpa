@@ -10,6 +10,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.MediaTypeEditor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -26,9 +28,6 @@ public class BizWebClient implements BizWebClientSpec, InitializingBean {
     @Value("${target.biz.url}")
     private String bizBaseUrl;
 
-    @Value("${target.biz.contentType")
-    private String bizContentType;
-
     /**
      * 빈 생성 후 초기화 로직
      */
@@ -37,7 +36,7 @@ public class BizWebClient implements BizWebClientSpec, InitializingBean {
         // WebClient
         this.webClient = webClientBuilder
                 .baseUrl(bizBaseUrl)
-                .defaultHeader(HttpHeaders.CONTENT_TYPE, bizContentType)
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }
 

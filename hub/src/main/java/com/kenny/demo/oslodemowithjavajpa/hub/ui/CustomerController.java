@@ -121,7 +121,7 @@ public class CustomerController implements CustomerControllerSpec {
      * 전계좌조회 WebFlux 병렬처리 버전
      */
     @Override
-    public CommonResponse<AllAccountListDto.Out> getAllAccountListByWebFlux(final CommonRequest<AllAccountListDto.In> input) throws Exception {
+    public CommonResponse<AllAccountListDto.Out> getAllAccountListByWebFlux(@RequestBody final CommonRequest<AllAccountListDto.In> input) throws Exception {
 
         log.debug("__KENNY__ getAllAccountListByWebFlux() input : {}", input);
 
