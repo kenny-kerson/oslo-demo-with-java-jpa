@@ -31,19 +31,23 @@
     </appender>
 
     <!-- File Appender -->
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender"> <!-- 파일경로 설정 -->
-        <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file> <!-- 출력패턴 설정-->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 파일경로 설정 -->
+        <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
+        <!-- 출력패턴 설정-->
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${LOG_PATTERN}</pattern>
-        </encoder> <!-- Rolling 정책 -->
+        </encoder>
+        <!-- Rolling 정책 -->
         <rollingPolicy
                 class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <!-- .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 -->
             <fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> <!-- 파일당 최고 용량 kb, mb, gb -->
                 <maxFileSize>10MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy> <!-- 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거-->
-            <maxHistory>30</maxHistory> <!--<MinIndex>1</MinIndex> <MaxIndex>10</MaxIndex>-->
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거-->
+            <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
 
@@ -57,14 +61,16 @@
         <file>${LOG_PATH}/${ERR_LOG_FILE_NAME}.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${LOG_PATTERN}</pattern>
-        </encoder> <!-- Rolling 정책 -->
+        </encoder>
+        <!-- Rolling 정책 -->
         <rollingPolicy
                 class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <!-- .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 -->
             <fileNamePattern>${LOG_PATH}/${ERR_LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> <!-- 파일당 최고 용량 kb, mb, gb -->
                 <maxFileSize>10MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy> <!-- 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거-->
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거-->
             <maxHistory>60</maxHistory>
         </rollingPolicy>
     </appender>
@@ -77,10 +83,10 @@
     </root>
 
     <!-- 특정패키지 로깅레벨 설정 -->
-    <logger name="org.apache.ibatis" level="DEBUG" additivity="false">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
-        <appender-ref ref="Error"/>
-    </logger>
+<!--    <logger name="org.apache.ibatis" level="DEBUG" additivity="false">-->
+<!--        <appender-ref ref="CONSOLE"/>-->
+<!--        <appender-ref ref="FILE"/>-->
+<!--        <appender-ref ref="Error"/>-->
+<!--    </logger>-->
 
 </configuration>
