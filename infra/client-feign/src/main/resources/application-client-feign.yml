@@ -25,4 +25,4 @@ feign:
     url: "http://localhost:8082"
 
 logging.level:
-  com.kenny.demo.oslodemowithjavajpa.clientfeign: ERROR
+  com.kenny.demo.oslodemowithjavajpa.clientfeign.feign: ERROR
