@@ -14,14 +14,18 @@
     <springProperty scope="context" name="LOG_LEVEL" source="logging.level.root"/>
 
     <!-- log file path -->
-    <property name="LOG_PATH" value="${log.config.path}"/>
+    <springProfile name="local">
+        <property name="LOG_PATH" value="./logs/hub"/>
+    </springProfile>
     <!-- log file name -->
-    <property name="LOG_FILE_NAME" value="${log.config.filename}"/>
+    <springProfile name="local">
+        <property name="LOG_FILE_NAME" value="hub_app_log"/>
+    </springProfile>
     <!-- err log file name -->
-    <property name="ERR_LOG_FILE_NAME" value="err_log"/>
+    <property name="ERR_LOG_FILE_NAME" value="hub_err_log"/>
     <!-- pattern -->
     <property name="LOG_PATTERN"
-              value="%-5level %d{yy-MM-dd HH:mm:ss}[%thread] [%logger{0}:%line] - %msg%n"/>
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %36.36X{guid} %highlight(%+5level) [%20.20thread] [%60.60c] [%30.30logger{0}:%+5line] - %msg%n"/>
 
     <!-- Console Appender -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -41,7 +45,7 @@
         <!-- Rolling 정책 -->
         <rollingPolicy
                 class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <!-- .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 -->
-            <fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> <!-- 파일당 최고 용량 kb, mb, gb -->
                 <maxFileSize>10MB</maxFileSize>
@@ -65,7 +69,7 @@
         <!-- Rolling 정책 -->
         <rollingPolicy
                 class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> <!-- .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 -->
-            <fileNamePattern>${LOG_PATH}/${ERR_LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/${ERR_LOG_FILE_NAME}_%d{yyyyMMdd}_%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> <!-- 파일당 최고 용량 kb, mb, gb -->
                 <maxFileSize>10MB</maxFileSize>

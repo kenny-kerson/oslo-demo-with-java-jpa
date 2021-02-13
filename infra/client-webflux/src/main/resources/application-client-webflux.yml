@@ -13,3 +13,6 @@ spring:
 target:
   biz:
     url: "http://localhost:8082"
+
+logging.level:
+  com.kenny.demo.oslodemowithjavajpa.clientwebflux: ERROR
