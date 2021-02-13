@@ -19,6 +19,9 @@ server:
 spring:
   profiles: local
 
-logging.level:
-  root: ERROR
-  com.kenny.demo.oslodemowithjavajpa.hub: ERROR
+# 로그설정
+logging:
+  level:
+    root: INFO
+    com.kenny.demo.oslodemowithjavajpa.hub: ERROR
+    reactor.netty: DEBUG

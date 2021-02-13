@@ -10,6 +10,7 @@ import com.kenny.demo.oslodemowithjavajpa.common.code.StatusCode;
 import com.kenny.demo.oslodemowithjavajpa.hub.ui.dto.AllAccountListDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +40,8 @@ public class CustomerController implements CustomerControllerSpec {
     @Override
     public CommonResponse<AllAccountListDto.Out> getAllAccountListByCf(@RequestBody final CommonRequest<AllAccountListDto.In> input) throws InterruptedException, ExecutionException, TimeoutException {
         log.debug("__KENNY__ getAllAccountListByCf() input : {}", input);
+
+        MDC.put("guid", input.getGuid());
 
         /* 계좌 기본목록 조회 */
         final CommonResponse<BaseAccountList.Out> baseAccountListByCstno = bizFeignClient.getBaseAccountListByCstno(
@@ -124,6 +127,8 @@ public class CustomerController implements CustomerControllerSpec {
     public CommonResponse<AllAccountListDto.Out> getAllAccountListByWebFlux(@RequestBody final CommonRequest<AllAccountListDto.In> input) throws Exception {
 
         log.debug("__KENNY__ getAllAccountListByWebFlux() input : {}", input);
+
+        MDC.put("guid", input.getGuid());
 
         /* 계좌 기본목록 조회 */
         final com.kenny.demo.oslodemowithjavajpa.clientwebflux.dto.CommonResponse<com.kenny.demo.oslodemowithjavajpa.clientwebflux.dto.customer.BaseAccountList.Out> baseAccountListByCstno = bizWebClient.getBaseAccountListByCstno(
