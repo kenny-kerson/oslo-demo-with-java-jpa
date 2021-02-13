@@ -37,7 +37,7 @@ public class CustomerController implements CustomerControllerSpec {
      * 전계좌조회 CompletableFuture 병렬처리 버전
      */
     @Override
-    public CommonResponse<AllAccountListDto.Out> getAllAccountListByCf(@RequestBody CommonRequest<AllAccountListDto.In> input) throws InterruptedException, ExecutionException, TimeoutException {
+    public CommonResponse<AllAccountListDto.Out> getAllAccountListByCf(@RequestBody final CommonRequest<AllAccountListDto.In> input) throws InterruptedException, ExecutionException, TimeoutException {
         log.debug("__KENNY__ getAllAccountListByCf() input : {}", input);
 
         /* 계좌 기본목록 조회 */
@@ -61,22 +61,22 @@ public class CustomerController implements CustomerControllerSpec {
         final List<CompletableFuture<CommonResponse<AccountInfo.Out>>> completableFutureList = baseAccountListByCstno.getDataBody().getGrid01()
                 .stream()
                 .map(el -> {
-                    if ("01".equals(el.getFirstDivisionCode())) {
-                        return CompletableFuture.supplyAsync(() -> {
-                                log.debug( "__KENNY__ supplyAsync 01 : {}", Thread.currentThread().getName());
+                        if ("01".equals(el.getFirstDivisionCode())) {
+                            return CompletableFuture.supplyAsync(() -> {
+                                    log.debug( "__KENNY__ supplyAsync 01 : {}", Thread.currentThread().getName());
 
-                                return bizFeignClient.getDepAccountInfo(el.getAcno());
-                        }, supplyAsyncExecutor);
+                                    return bizFeignClient.getDepAccountInfo(el.getAcno());
+                            }, supplyAsyncExecutor);
 
-                    } else if ("02".equals(el.getFirstDivisionCode())) {
-                        return CompletableFuture.supplyAsync(() -> {
-                            log.debug( "__KENNY__ supplyAsync 02 : {}", Thread.currentThread().getName());
+                        } else if ("02".equals(el.getFirstDivisionCode())) {
+                            return CompletableFuture.supplyAsync(() -> {
+                                log.debug( "__KENNY__ supplyAsync 02 : {}", Thread.currentThread().getName());
 
-                            return bizFeignClient.getLoanAccountInfo(el.getAcno());
-                        }, supplyAsyncExecutor);
-                    }
+                                return bizFeignClient.getLoanAccountInfo(el.getAcno());
+                            }, supplyAsyncExecutor);
+                        }
 
-                    return null;
+                        return null;
                 })
                 .collect(Collectors.toList());
 

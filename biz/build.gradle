@@ -8,7 +8,9 @@ configurations {
 dependencies {
     // include module
     implementation project(':common')
+    implementation project(':infra:db-postgresql')
     implementation project(':infra:client-feign')
+
 
     // Web
     implementation 'org.springframework.boot:spring-boot-starter-web'

@@ -24,6 +24,6 @@ feign:
     name: "bizFeignClient"
     url: "http://localhost:8082"
 
-logging:
-  level:
-    com.kenny.demo.oslodemowithjavajpa.clientfeign.feign: ERROR
+logging.level:
+  root: ERROR
+  com.kenny.demo.oslodemowithjavajpa.clientfeign.feign: ERROR
