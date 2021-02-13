@@ -1,58 +1,75 @@
 # Oslo Demo with Java & JPA
-- ÀüÃ¼°èÁÂÁ¶È¸ ÀÚÃ¼±¸Çö ¿À½½·Î ÇÁ·ÎÁ§Æ®ÀÇ µ¥¸ğ¹öÀü with Java, JPA
-- **¸ñÀû**
-  * ±âÁ¸ Oslo ÇÁ·ÎÁ§Æ®ÀÇ ·ÎÁ÷À», Original Oslo Spec°ú ´Ù¸£°Ô, JPA / Kafka / ... µî »õ·Î¿î ±â¼ú¼ÂÀ¸·Î ±¸ÇöÇØº¸´Â°Í
-  * ±× ¿Ü, »õ·Ó°Ô ½ÀµæÇß°Å³ª, ¹İº¹¼÷´ŞÀÌ ÇÊ¿äÇÑ ±â¼ú¼Âµé¿¡ ´ëÇÑ ½ÇÇèÀû Àû¿ë
-  * °³¹ß¿ª·®°­È­¸¦ À§ÇÑ Å×½ºÆ® ÇÁ·ÎÁ§Æ® 
+- **ê°œìš”**
+  * ì „ì²´ê³„ì¢Œì¡°íšŒ ìì²´êµ¬í˜„ ì˜¤ìŠ¬ë¡œ í”„ë¡œì íŠ¸ì˜ ë°ëª¨ë²„ì „ with Java, JPA
+- **ëª©ì **
+  * ê¸°ì¡´ Oslo í”„ë¡œì íŠ¸ì˜ ë¡œì§ì„, Original Oslo Specê³¼ ë‹¤ë¥´ê²Œ, JPA / Kafka / ... ë“± ìƒˆë¡œìš´ ê¸°ìˆ ì…‹ìœ¼ë¡œ êµ¬í˜„í•´ë³´ëŠ”ê²ƒ
+  * ê·¸ ì™¸, ìƒˆë¡­ê²Œ ìŠµë“í–ˆê±°ë‚˜, ë°˜ë³µìˆ™ë‹¬ì´ í•„ìš”í•œ ê¸°ìˆ ì…‹ë“¤ì— ëŒ€í•œ ì‹¤í—˜ì  ì ìš©
+  * ê°œë°œì—­ëŸ‰ê°•í™”ë¥¼ ìœ„í•œ í…ŒìŠ¤íŠ¸ í”„ë¡œì íŠ¸ 
    
 ## Index
 - [Specification](#specification)
 - [Project Structure](#project-structure)
 - [Local Develop Environment](#local-develop-environment)
-- [Deploy](#deploy)
 - [APIs](#apis)
+- [Deploy](#deploy)
 
 ## Specification
 - Language : **Java**
 - JDK : **OpenJDK 11**
 - Framework : **Spring Boot 2.3.3**
 - DBMS
-  * RDB : **PostgreSQL**( Local / Product È¯°æµ¿ÀÏ )
+  * RDB : **PostgreSQL**( Local / Product í™˜ê²½ë™ì¼ )
+  * NoSQL : **MongoDB**( APIë¡œê·¸ ì ì¬ìš© )
   * ORM : **JPA**
 - Middleware
-  * TBD : Redis, Kafka, ...
+  * Cache, In-memory DB : **Redis** 5
+  * Message Broker : **Kafka** 2.12-2.3  & **Zookeeper** 3.4.6 
 - External Library
   * Lombok
-    * getter, constructor, builder µî ¹İº¹ÀûÀÎ ÄÚµåÁ¦°Å¸¦ À§ÇØ »ç¿ë
+    * getter, constructor, builder ë“± ë°˜ë³µì ì¸ ì½”ë“œì œê±°ë¥¼ ìœ„í•´ ì‚¬ìš©
   * TBD : openfeign, ... 
 
 ## Project Structure
-1. **¸ÖÆ¼ ¸ğµâ ÇÁ·ÎÁ§Æ®**
-   * `hub` : »ç¿ëÀÚ ¸®Äù½ºÆ® ¼­ºù, circuit breaker, failover & fallback, throttling, ...
-   * `biz` : µµ¸ŞÀÎ ¹× ¼­ºñ½º ±â´É ±¸Çö 
-2. **DDD °üÁ¡ÀÇ ÆĞÅ°Â¡ ¹× Å¬·¡½º ±¸¼º**
+1. **ë©€í‹° ëª¨ë“ˆ í”„ë¡œì íŠ¸**
+   * `hub` : ì‚¬ìš©ì ë¦¬í€˜ìŠ¤íŠ¸ ì„œë¹™, circuit breaker, failover & fallback, throttling, ...
+   * `biz` : ë„ë©”ì¸ ë° ì„œë¹„ìŠ¤ ê¸°ëŠ¥ êµ¬í˜„
+   * `consumer` : Message Brokerì˜ Consumerì™€ ê°™ì´ ì¤€ì‹¤ì‹œê°„ ì²˜ë¦¬ë¡œì§ êµ¬í˜„ 
+   * `infra` : ì™¸ë¶€ì—°ë™, NoSql, Message Broker ë“± ì¸í”„ë¼ ë ˆë²¨ì˜ ì‹¤ì œ êµ¬í˜„ì²´ ê¸°ëŠ¥ì„ ì œê³µí•˜ëŠ” ëª¨ë“ˆ
+      * `client-feign` : openfeign êµ¬í˜„ëª¨ë“ˆ. hub -> biz ì—°ë™ì„ ìœ„í•´ ì‚¬ìš© 
+      * `db-redis` : redis êµ¬í˜„ëª¨ë“ˆ for cache, memoryDB
+      * `db-mongo` : mongoDB êµ¬í˜„ëª¨ë“ˆ for API request/response Logging
+      * `broker-kafka` : kafka êµ¬í˜„ëª¨ë“ˆ for API ë¡œê¹… ë° ì´ë²¤íŠ¸ or ì¤€ì‹¤ì‹œê°„ ë¡œì§ì²˜ë¦¬ 
+   * `common` : util, exception, dto ë“± ê³ ìˆ˜ì¤€ ë ˆë²¨ì˜ ëª¨ë“ˆë“¤ì´ ê³µí†µìœ¼ë¡œ ì‚¬ìš©í•˜ëŠ” ê¸°ëŠ¥êµ¬í˜„. ê°€ì¥ ìµœì†Œí™”ëœ êµ¬í˜„.
+   
+2. **DDD ê´€ì ì˜ íŒ¨í‚¤ì§• ë° í´ë˜ìŠ¤ êµ¬ì„±**
    * account, customer, product, ...
    * ui, domain, infra, ...
-3. **docker-compose¸¦ ÅëÇÑ ·ÎÄÃ °³¹ßÈ¯°æ ±¸¼º**
+   
+3. **docker-composeë¥¼ í†µí•œ ë¡œì»¬ ê°œë°œí™˜ê²½ êµ¬ì„±**
    * RDB( PostgreSQL ), Redis, Kafka, ... 
 
 ## Local Develop Environment
-1. Middleware ½ÃÀÛ
+1. Middleware ì‹œì‘
    * TBD
-2. Application ½ÃÀÛ
+   
+2. Application ì‹œì‘
    * TBD
-3. Application Á¾·á
-   * TBD 
-4. Middleware Á¾·á
+   
+3. Application ì¢…ë£Œ
    * TBD
+    
+4. Middleware ì¢…ë£Œ
+   * TBD
+   
+## APIs
+- Application(WAS)ìœ¼ë¡œ ê¸°ë™ë˜ëŠ” **Hub, Bizì—ì„œ ì œê³µí•˜ëŠ” API List**
+### Hub
+- ì „ì²´ê³„ì¢Œì¡°íšŒ : `POST /v1/oslo/hub/customer/all_account_list`
+
+### Biz
+- ê³„ì¢Œê¸°ë³¸ ëª©ë¡ì¡°íšŒ : `POST /v1/oslo/biz/customer/base_account_list` 
+- ìˆ˜ì‹ ê³„ì¢Œ ì •ë³´ì¡°íšŒ : `GET /v1/oslo/biz/account/dep/info`
+- ì—¬ì‹ ê³„ì¢Œ ì •ë³´ì¡°íšŒ : `GET /v1/oslo/biz/account/loan/info`
 
 ## Deploy
 - TBD 
-
-## APIs
-- Application(WAS)À¸·Î ±âµ¿µÇ´Â **Hub, Biz¿¡¼­ Á¦°øÇÏ´Â API List**
-### Hub
-- TBD
-
-### Biz
-- TBD

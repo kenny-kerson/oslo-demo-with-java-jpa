@@ -1,1 +1,37 @@
+# =======================================================
+# - 글로벌 셋팅
+# =======================================================
+spring:
+  application:
+    name: oslo-demo-biz
+  profiles:
+    include:
+      - client-feign
+      - db-redis
+      - broker-kafka
+server:
+  port: 8082
 
+---
+# =======================================================
+# - 로컬 환경 셋팅
+# =======================================================
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:postgresql://localhost:5432/oslo_demo_postgresql
+    username: develop
+    password: 1qaz@WSX
+    driver-class-name: org.postgresql.Driver
+    # TODO Pool Size 관련 설정은 최적화 필요!!
+    hikari:
+      # 디폴트 : 10
+      maximum-pool-size: 10
+      # 디폴트 : 180000( 30분 )
+      max-lifetime: 180000
+      # 디폴트 : 30000( 30초 )
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+logging.level:
+  root: INFO

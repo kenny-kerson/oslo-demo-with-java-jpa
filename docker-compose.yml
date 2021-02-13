@@ -1,0 +1,78 @@
+version: "3.8"
+services:
+  # ================================================
+  # - RDB : PostgreSQL
+  # ================================================
+  postgresql:
+    container_name: oslo_demo_postgresql
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: develop
+      POSTGRES_PASSWORD: 1qaz@WSX
+      POSTGRES_DB: oslo_demo_postgresql
+    volumes:
+      - "./init/postgresql:/docker-entrypoint-initdb.d/"
+
+  # ================================================
+  # - RDB : Oracle
+  # ================================================
+  oracle:
+    container_name: oslo_demo_oracle
+    image: oracleinanutshell/oracle-xe-11g
+    ports:
+      - 1521:1521
+      - 8080:8080
+      - 5500:5500
+    volumes:
+      - "./init/oracle:/docker-entrypoint-initdb.d/"
+
+  # ================================================
+  # - NoSql : MongoDB
+  # ================================================
+  mongodb:
+    container_name: oslo_demo_mongodb
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: develop
+      MONGO_INITDB_ROOT_PASSWORD: 1qaz@WSX
+
+  # ================================================
+  # - NoSql : Redis( Not Cluster )
+  # ================================================
+  redis:
+    container_name: oslo_demo_redis
+    image: redis:5.0-alpine
+    ports:
+      - "6379:6379"
+
+  # ================================================
+  # - Message Broker : Zookeeper & Kafka
+  # ================================================
+  zookeeper:
+    container_name: oslo_demo_zookeeper
+    image: wurstmeister/zookeeper:3.4.6
+    ports:
+      - "2181:2181"
+
+  kafka:
+    container_name: oslo_demo_kafka
+    depends_on:
+      - zookeeper
+    image: wurstmeister/kafka:2.12-2.3.0
+    ports:
+      - "9092:9092"
+    environment:
+      # 호스트
+      KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+      # 포트
+      KAFKA_ADVERTISED_PORT: 9092
+      # 주키퍼 정보
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      # 토픽 정보 : topic name / partition / Replica
+      KAFKA_CREATE_TOPICS: "API_LOG:10:1"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"

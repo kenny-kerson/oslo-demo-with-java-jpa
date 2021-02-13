@@ -1,1 +1,27 @@
+# =======================================================
+# - 글로벌 셋팅
+# =======================================================
+spring:
+  application:
+    name: oslo-demo-hub
+  profiles:
+    include:
+      - client-feign
+      - client-webflux
 
+server:
+  port: 8081
+
+---
+# =======================================================
+# - 로컬 환경 셋팅
+# =======================================================
+spring:
+  profiles: local
+
+# 로그설정
+logging:
+  level:
+    root: INFO
+    com.kenny.demo.oslodemowithjavajpa.hub: ERROR
+    reactor.netty: DEBUG

@@ -8,6 +8,9 @@ configurations {
 dependencies {
     // include module
     implementation project(':common')
+    implementation project(':infra:db-postgresql')
+    implementation project(':infra:client-feign')
+
 
     // Web
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -15,9 +18,11 @@ dependencies {
 
     // Database
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.postgresql:postgresql'
 
     // Security
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // TODO Spring Security 로직 추가시 대응 필요!
+//    implementation 'org.springframework.boot:spring-boot-starter-security'
 
     // Test
     testImplementation 'org.springframework.security:spring-security-test'

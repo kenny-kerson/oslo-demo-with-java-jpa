@@ -1,0 +1,19 @@
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+dependencies {
+    // Spring
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    // Spring Cloud
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign"
+
+    // External Library
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+}
