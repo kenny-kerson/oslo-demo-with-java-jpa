@@ -22,22 +22,13 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class BizWebClient implements BizWebClientSpec, InitializingBean {
 
-    private final WebClient.Builder webClientBuilder;
-    private WebClient webClient;
-
-    @Value("${target.biz.url}")
-    private String bizBaseUrl;
+    private final WebClient webClient;
 
     /**
      * 빈 생성 후 초기화 로직
      */
     @Override
     public void afterPropertiesSet() throws Exception {
-        // WebClient
-        this.webClient = webClientBuilder
-                .baseUrl(bizBaseUrl)
-                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .build();
     }
 
     /**
