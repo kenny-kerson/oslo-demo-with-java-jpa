@@ -1,18 +1,17 @@
-package com.kenny.demo.oslodemowithjavajpa.dbpostgresql.domain;
+package com.kenny.demo.oslodemowithjavajpa.dbpostgresql.account.dep.domain;
 
 import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.math.BigDecimal;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor @AllArgsConstructor
 @Builder
 @ToString
-public class DepositAccountInfoM {
+public class SharedAccountInfoM {
 
     @Id
     private String accountNo;

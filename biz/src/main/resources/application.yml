@@ -19,3 +19,8 @@ server:
 # =======================================================
 spring:
   profiles: local
+
+# 로깅 레벨 설정 : yml --> logback
+logging.level:
+  root: INFO
+  com.kenny.demo.oslodemowithjavajpa: DEBUG
