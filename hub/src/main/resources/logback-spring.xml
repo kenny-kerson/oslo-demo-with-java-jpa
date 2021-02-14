@@ -25,7 +25,7 @@
     <property name="ERR_LOG_FILE_NAME" value="hub_err_log"/>
     <!-- pattern -->
     <property name="LOG_PATTERN"
-              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %36.36X{guid} %highlight(%+5level) [%20.20thread] [%60.60c] [%30.30logger{0}:%+5line] - %msg%n"/>
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %gray(%36.36X{guid}) %highlight(%+5level) [%20.20thread] [%60.60c] [%green(%30.30logger{0}):%+5line] - %msg%n"/>
 
     <!-- Console Appender -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
