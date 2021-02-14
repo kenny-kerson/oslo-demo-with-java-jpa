@@ -9,3 +9,16 @@ Content-Type: application/json
       "representationAcno": "3333011234567"
     }
 }
+
+
+###
+POST http://localhost:8081/v1/hub/customer/all_account_list/webflux
+Content-Type: application/json
+
+{
+  "guid": "20201118154600LOCAL-OSL-CHNHUB002001",
+  "cstno": "0000011000000339",
+  "dataBody": {
+    "representationAcno": "3333011234567"
+  }
+}
