@@ -6,28 +6,28 @@ configurations {
 }
 
 dependencies {
+    // Spring
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // Database
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    implementation 'org.postgresql:postgresql'
+
     // include module
     implementation project(':common')
     implementation project(':infra:db-postgresql')
 //    implementation project(':infra:client-feign')
 
-
-    // Web
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-
-    // Database
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.postgresql:postgresql'
-
     // Security
     // TODO Spring Security 로직 추가시 대응 필요!
 //    implementation 'org.springframework.boot:spring-boot-starter-security'
 
-    // Test
-    testImplementation 'org.springframework.security:spring-security-test'
-
     // External Library
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    // Test
+    testImplementation 'org.springframework.security:spring-security-test'
+
 }
