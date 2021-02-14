@@ -4,6 +4,10 @@ import com.kenny.demo.oslodemowithjavajpa.biz.common.dto.CommonRequest;
 import com.kenny.demo.oslodemowithjavajpa.biz.common.dto.CommonResponse;
 import com.kenny.demo.oslodemowithjavajpa.biz.customer.ui.dto.BaseAccountList;
 import com.kenny.demo.oslodemowithjavajpa.common.code.StatusCode;
+import com.kenny.demo.oslodemowithjavajpa.dbpostgresql.account.dep.domain.DepositAccountInfoMRepository;
+import com.kenny.demo.oslodemowithjavajpa.dbpostgresql.customer.domain.CustomerBaseAccount;
+import com.kenny.demo.oslodemowithjavajpa.dbpostgresql.customer.domain.CustomerInfoM;
+import com.kenny.demo.oslodemowithjavajpa.dbpostgresql.customer.domain.CustomerInfoMRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +20,8 @@ import java.util.List;
 @Slf4j
 public class CustomerController implements CustomerControllerSpec {
 
-//    private final NormalCustomerRepositoryManager normalCustomerRepositoryManager;
+    // TODO 이거는 biz 모듈의 domain, infra 로직으로 변경 필요! 지금 로직은 테스트용!
+    private final CustomerInfoMRepository customerInfoMRepository;
 
     /**
      * 고객별 기본계좌 목록조회
