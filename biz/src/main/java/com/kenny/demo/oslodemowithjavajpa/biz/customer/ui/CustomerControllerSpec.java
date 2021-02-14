@@ -1,11 +1,10 @@
 package com.kenny.demo.oslodemowithjavajpa.biz.customer.ui;
 
-import com.kenny.demo.oslodemowithjavajpa.clientfeign.dto.CommonRequest;
-import com.kenny.demo.oslodemowithjavajpa.clientfeign.dto.CommonResponse;
-import com.kenny.demo.oslodemowithjavajpa.clientfeign.dto.customer.BaseAccountList;
+import com.kenny.demo.oslodemowithjavajpa.biz.customer.ui.dto.BaseAccountList;
+import com.kenny.demo.oslodemowithjavajpa.biz.common.dto.CommonRequest;
+import com.kenny.demo.oslodemowithjavajpa.biz.common.dto.CommonResponse;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 public interface CustomerControllerSpec {
 

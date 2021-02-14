@@ -1,8 +1,8 @@
 package com.kenny.demo.oslodemowithjavajpa.biz.customer.ui;
 
-import com.kenny.demo.oslodemowithjavajpa.clientfeign.dto.CommonRequest;
-import com.kenny.demo.oslodemowithjavajpa.clientfeign.dto.CommonResponse;
-import com.kenny.demo.oslodemowithjavajpa.clientfeign.dto.customer.BaseAccountList;
+import com.kenny.demo.oslodemowithjavajpa.biz.customer.ui.dto.BaseAccountList;
+import com.kenny.demo.oslodemowithjavajpa.biz.common.dto.CommonRequest;
+import com.kenny.demo.oslodemowithjavajpa.biz.common.dto.CommonResponse;
 import com.kenny.demo.oslodemowithjavajpa.common.code.StatusCode;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

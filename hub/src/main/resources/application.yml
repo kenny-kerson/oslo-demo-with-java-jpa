@@ -21,5 +21,6 @@ spring:
 
 logging.level:
   root: INFO
-  com.kenny.demo.oslodemowithjavajpa: DEBUG
-  reactor.netty: DEBUG
+  com.kenny.demo.oslodemowithjavajpa: WARN
+  # WebClient ConnectionProvider Pool 로그를 보기 위한 설정
+#  reactor.netty: DEBUG

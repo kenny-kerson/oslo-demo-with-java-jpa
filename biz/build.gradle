@@ -9,7 +9,7 @@ dependencies {
     // include module
     implementation project(':common')
     implementation project(':infra:db-postgresql')
-    implementation project(':infra:client-feign')
+//    implementation project(':infra:client-feign')
 
 
     // Web
